@@ -161,27 +161,84 @@ export default function Hero({ dict }: HeroProps) {
       </a>
 
       <style>{`
-        @media (max-width: 768px){
+        @media (max-width:768px){
 
           .hero{
-            min-height:auto!important;
-            padding:120px 0 90px!important;
+            min-height:100svh !important;
+            padding:110px 0 70px !important;
+          }
+
+          .hero .wrap{
+            padding-left:24px;
+            padding-right:24px;
+          }
+
+          .hero-title{
+            font-size:54px !important;
+            line-height:1.08 !important;
+            margin-bottom:24px !important;
+          }
+
+          .hero p{
+            font-size:17px !important;
+            line-height:1.75 !important;
+          }
+
+          .hero .reveal.d4{
+            display:flex !important;
+            flex-direction:column;
+            gap:14px !important;
+            align-items:stretch;
+            margin-top:36px !important;
+          }
+
+          .hero .btn{
+            width:100%;
+            justify-content:center;
+            padding:18px 24px;
+            font-size:16px;
           }
 
           .hero-stats{
-            gap:16px;
+            margin-top:44px !important;
+            flex-direction:column;
+            gap:18px !important;
           }
 
           .hero-stat{
             width:100%;
+            min-width:unset;
+            padding:28px;
+            border-radius:20px;
+          }
+
+          .hero-stat b{
+            font-size:40px;
+            margin-bottom:8px;
           }
 
         }
 
         @media (max-width:480px){
 
+          .hero{
+            padding-top:100px !important;
+          }
+
           .hero-title{
-            font-size:42px!important;
+            font-size:42px !important;
+          }
+
+          .hero p{
+            font-size:16px !important;
+          }
+
+          .hero-stat{
+            padding:24px;
+          }
+
+          .hero-stat b{
+            font-size:34px;
           }
 
         }

@@ -145,73 +145,137 @@ export default function Nav({ dict, locale }: NavProps) {
                 display: 'none',
                 flexDirection: 'column',
                 gap: 5,
-                width: 42,
-                height: 42,
+                width: 48,
+                height: 48,
+                borderRadius: 12,
+                background: 'rgba(15,73,137,.05)',
+                transition: '.3s var(--ease)',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                background: 'none',
                 border: 'none',
               }}
             >
-              <span style={{ width: 22, height: 2, background: 'var(--primary)', borderRadius: 2, transition: '.35s var(--ease)', transform: mobileOpen ? 'translateY(7px) rotate(45deg)' : 'none' }} />
-              <span style={{ width: 22, height: 2, background: 'var(--primary)', borderRadius: 2, transition: '.35s var(--ease)', opacity: mobileOpen ? 0 : 1 }} />
-              <span style={{ width: 22, height: 2, background: 'var(--primary)', borderRadius: 2, transition: '.35s var(--ease)', transform: mobileOpen ? 'translateY(-7px) rotate(-45deg)' : 'none' }} />
+              <span style={{ width: 24, height: 2.5, background: 'var(--primary)', borderRadius: 2, transition: '.35s var(--ease)', transform: mobileOpen ? 'translateY(7px) rotate(45deg)' : 'none' }} />
+              <span style={{ width: 24, height: 2.5, background: 'var(--primary)', borderRadius: 2, transition: '.35s var(--ease)', opacity: mobileOpen ? 0 : 1 }} />
+              <span style={{ width: 24, height: 2.5, background: 'var(--primary)', borderRadius: 2, transition: '.35s var(--ease)', transform: mobileOpen ? 'translateY(-7px) rotate(-45deg)' : 'none' }} />
             </button>
           </div>
         </div>
       </nav>
 
       <div
-        style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 75,
-          background:'linear-gradient(180deg,#ffffff,#f7fbff)',
-          backdropFilter: 'blur(20px)',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          padding: 40,
-          gap: 8,
-          opacity: mobileOpen ? 1 : 0,
-          pointerEvents: mobileOpen ? 'auto' : 'none',
-          transform: mobileOpen ? 'none' : 'translateY(-12px)',
-          transition: '.45s var(--ease)',
-        }}
-      >
-        {nav.links.map((l) => (
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 75,
+        background: '#fff',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        padding: '110px 32px 36px',
+        opacity: mobileOpen ? 1 : 0,
+        pointerEvents: mobileOpen ? 'auto' : 'none',
+        transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)',
+        transition: '.45s var(--ease)',
+      }}
+    >
+      <div>
+        <div
+          style={{
+            marginBottom: 42,
+            paddingBottom: 24,
+            borderBottom: '1px solid var(--border)',
+          }}
+        >
+          <div
+            style={{
+              fontFamily: 'var(--font-playfair), Georgia, serif',
+              fontSize: 28,
+              fontWeight: 700,
+              color: 'var(--primary)',
+            }}
+          >
+            {nav.name}
+          </div>
+
+          <div
+            style={{
+              marginTop: 6,
+              fontSize: 12,
+              letterSpacing: '.16em',
+              textTransform: 'uppercase',
+              color: 'var(--text3)',
+            }}
+          >
+            {nav.role}
+          </div>
+        </div>
+
+        {nav.links.map((l, index) => (
           <a
             key={l.href}
             href={l.href}
             onClick={closeMenu}
+            className="mobile-link"
             style={{
+              display: 'block',
               fontFamily: 'var(--font-playfair), Georgia, serif',
               fontSize: 34,
               fontWeight: 600,
               color: 'var(--text)',
-              padding: '16px 0',
-              transition: '.3s var(--ease)',
+              padding: '18px 0',
               borderBottom: '1px solid var(--border)',
+              transition: '.35s var(--ease)',
+              animation: mobileOpen
+                ? `fadeIn .45s ease ${index * 0.08}s forwards`
+                : 'none',
+              opacity: 0,
             }}
           >
             {l.label}
           </a>
         ))}
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 16,
+        }}
+      >
         <a
           href={`/${otherLocale}/`}
           onClick={closeMenu}
           style={{
-            fontFamily: 'var(--font-manrope), sans-serif',
-            fontSize: 18,
+            display: 'inline-flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            border: '1px solid var(--border)',
+            borderRadius: 999,
+            padding: '14px',
             fontWeight: 700,
-            color: 'var(--accent)',
-            padding: '16px 0 0',
+            color: 'var(--primary)',
           }}
         >
-          {otherLocale === 'en' ? 'English' : 'Русский'}
+          {otherLocale.toUpperCase()}
+        </a>
+
+        <a
+          href="#contact"
+          onClick={closeMenu}
+          className="btn btn-primary"
+          style={{
+            justifyContent: 'center',
+            width: '100%',
+          }}
+        >
+          {nav.write}
+          <span className="arr">→</span>
         </a>
       </div>
+    </div>
 
       <style>{`
         @media (max-width: 768px) {
@@ -255,6 +319,24 @@ export default function Nav({ dict, locale }: NavProps) {
 
         .nav-cta-btn:hover .arr{
           color:#fff !important;
+        }
+        .mobile-link:hover{
+          color:var(--primary);
+          padding-left:12px;
+        }
+
+        @keyframes fadeIn{
+
+          from{
+            opacity:0;
+            transform:translateX(24px);
+          }
+
+          to{
+            opacity:1;
+            transform:none;
+          }
+
         }
       `}</style>
     </>

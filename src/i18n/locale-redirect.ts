@@ -1,0 +1,1 @@
+export const localeRedirectScript = `(function(){var l=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||"ru"],e="ru";for(var n=0;n<l.length;n++){var o=(l[n]||"").toLowerCase();if(o.indexOf("en")===0){e="en";break}if(o.indexOf("ru")===0){e="ru";break}}location.replace("/"+e+"/")})();`

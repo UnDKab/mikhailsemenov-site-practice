@@ -112,32 +112,49 @@ export default function Hero({ dict }: HeroProps) {
           </div>
 
           <div className="hero-stats reveal in d5">
-            {hero.meta.map((m) => (
-              <div key={m.label} className="hero-stat">
+
+          {hero.meta.map((m) => (
+
+            <div key={m.label} className="hero-stat-slide">
+
+              <div className="hero-stat">
+
                 <b
                   style={{
                     fontFamily:
                       'var(--font-playfair), Georgia, serif',
-                    color: 'var(--primary)',
+                    color:'var(--primary)',
                   }}
                 >
                   {m.value}
                 </b>
 
+
                 <span
                   style={{
-                    color: 'var(--text3)',
-                    fontSize: 14,
-                    fontWeight: 600,
-                    letterSpacing: '.05em',
-                    textTransform: 'uppercase',
+                    color:'var(--text3)',
+                    fontSize:14,
+                    fontWeight:600,
+                    letterSpacing:'.05em',
+                    textTransform:'uppercase',
                   }}
                 >
                   {m.label}
                 </span>
+
+
               </div>
-            ))}
-          </div>
+
+
+              <div className="mobile-swipe-hint">
+                ← ... →
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
         </div>
       </div>
 
@@ -161,87 +178,301 @@ export default function Hero({ dict }: HeroProps) {
       </a>
 
       <style>{`
+
+        .hero-stat-slide{
+          display:flex;
+          flex-direction:column;
+        }
+
+
+        .mobile-swipe-hint{
+          display:none;
+        }
+
+
+
         @media (max-width:768px){
 
           .hero{
+
             min-height:100svh !important;
-            padding:110px 0 70px !important;
+
+            padding:
+              110px 0 70px !important;
+
           }
+
 
           .hero .wrap{
+
             padding-left:24px;
+
             padding-right:24px;
+
           }
+
 
           .hero-title{
+
             font-size:54px !important;
+
             line-height:1.08 !important;
+
             margin-bottom:24px !important;
+
           }
+
 
           .hero p{
+
             font-size:17px !important;
+
             line-height:1.75 !important;
+
           }
+
+
 
           .hero .reveal.d4{
+
             display:flex !important;
+
             flex-direction:column;
+
             gap:14px !important;
+
             align-items:stretch;
+
             margin-top:36px !important;
+
           }
+
+
 
           .hero .btn{
+
             width:100%;
+
             justify-content:center;
-            padding:18px 24px;
+
+            padding:
+              18px 24px;
+
             font-size:16px;
+
           }
+
+
+
+          /* HERO STATS CAROUSEL */
 
           .hero-stats{
+
             margin-top:44px !important;
-            flex-direction:column;
+
+
+            display:flex !important;
+
+            flex-direction:row;
+
+
+            overflow-x:auto;
+
+            overflow-y:hidden;
+
+
             gap:18px !important;
+
+
+            margin-left:-24px !important;
+
+            margin-right:-24px !important;
+
+
+            padding:
+              0 24px 12px;
+
+
+            scroll-snap-type:x mandatory;
+
+
+            -webkit-overflow-scrolling:touch;
+
+
+            scrollbar-width:none;
+
           }
+
+
+
+          .hero-stats::-webkit-scrollbar{
+
+            display:none;
+
+          }
+
+
+
+          .hero-stat-slide{
+
+            flex:
+              0 0 88%;
+
+
+            scroll-snap-align:center;
+
+          }
+
+
 
           .hero-stat{
+
             width:100%;
+
             min-width:unset;
+
+
             padding:28px;
+
+
             border-radius:20px;
+
+
+            height:100%;
+
           }
+
+
 
           .hero-stat b{
+
             font-size:40px;
+
             margin-bottom:8px;
+
           }
 
+
+
+          .mobile-swipe-hint{
+
+            display:flex;
+
+
+            justify-content:center;
+
+            align-items:center;
+
+
+            margin-top:14px;
+
+
+            color:var(--text3);
+
+
+            font-size:13px;
+
+
+            font-weight:600;
+
+
+            letter-spacing:.08em;
+
+
+            text-transform:uppercase;
+
+
+            animation:
+              hintPulse 2.2s ease-in-out infinite;
+
+          }
+
+
+
         }
+
+
 
         @media (max-width:480px){
 
+
           .hero{
+
             padding-top:100px !important;
+
           }
+
+
 
           .hero-title{
+
             font-size:42px !important;
+
           }
+
+
 
           .hero p{
+
             font-size:16px !important;
+
           }
+
+
+
+          .hero-stat-slide{
+
+            flex:
+              0 0 92%;
+
+          }
+
+
 
           .hero-stat{
+
             padding:24px;
+
           }
+
+
 
           .hero-stat b{
+
             font-size:34px;
+
           }
 
+
         }
+
+
+
+        @keyframes hintPulse{
+
+
+          0%,100%{
+
+            opacity:.45;
+
+            transform:translateX(0);
+
+          }
+
+
+
+          50%{
+
+            opacity:1;
+
+            transform:translateX(4px);
+
+          }
+
+
+        }
+
+
       `}</style>
     </header>
   )

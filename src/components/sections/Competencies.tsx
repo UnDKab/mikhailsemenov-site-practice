@@ -90,9 +90,6 @@ export default function Competencies({ dict }: CompetenciesProps) {
                   textAlign: 'center',
                 }}
               >
-                <div className="mobile-swipe-hint">
-                  ← Листайте карточки →
-                </div>
                 <div className="comp-line" />
 
                 <div className="comp-glow" />
@@ -155,7 +152,11 @@ export default function Competencies({ dict }: CompetenciesProps) {
                   {card.text}
                 </p>
               </div>
+                              <div className="mobile-swipe-hint">
+                  ← Листайте карточки →
+                </div>
             </RevealBlock>
+            
           ))}
         </div>
       </div>

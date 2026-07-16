@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
 import RevealBlock from '@/components/ui/RevealBlock'
 import type { Dictionary } from '@/i18n/types'
 
@@ -7,7 +10,63 @@ type PrinciplesProps = {
 
 export default function Principles({ dict }: PrinciplesProps) {
   const { principles } = dict
+  const gridRef = useRef<HTMLDivElement>(null)
 
+  useEffect(() => {
+
+    const equalizeCards = () => {
+
+      if (!gridRef.current) return
+
+      const cards =
+        gridRef.current.querySelectorAll(
+          '.principle-card'
+        )
+
+      let maxHeight = 0
+
+
+      cards.forEach((card)=>{
+
+        const el = card as HTMLElement
+
+        el.style.height = 'auto'
+
+        maxHeight = Math.max(
+          maxHeight,
+          el.offsetHeight
+        )
+
+      })
+
+
+      cards.forEach((card)=>{
+
+        (card as HTMLElement).style.height =
+          `${maxHeight}px`
+
+      })
+
+    }
+
+
+    equalizeCards()
+
+
+    window.addEventListener(
+      'resize',
+      equalizeCards
+    )
+
+
+    return () =>
+      window.removeEventListener(
+        'resize',
+        equalizeCards
+      )
+
+
+  }, [principles.items])
   return (
     <section
       className="sec"
@@ -38,7 +97,10 @@ export default function Principles({ dict }: PrinciplesProps) {
           <h2>{principles.title}</h2>
         </RevealBlock>
 
-        <div className="principles-grid">
+        <div 
+          className="principles-grid"
+          ref={gridRef}
+        >
           {principles.items.map((p, i) => (
             <RevealBlock
               key={p.num}
@@ -248,6 +310,8 @@ export default function Principles({ dict }: PrinciplesProps) {
 
             display:flex;
 
+            height:100%;
+
           }
 
           .principle-card{
@@ -326,6 +390,10 @@ export default function Principles({ dict }: PrinciplesProps) {
             transform:translateX(4px);
           }
 
+        }
+        .principle-card{
+          display:flex;
+          flex-direction:column;
         }
 
       `}</style>

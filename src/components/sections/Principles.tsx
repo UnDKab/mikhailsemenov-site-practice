@@ -64,6 +64,9 @@ export default function Principles({ dict }: PrinciplesProps) {
             </RevealBlock>
           ))}
         </div>
+        <div className="mobile-swipe-hint">
+        ← ... →
+      </div>
       </div>
 
       <style>{`
@@ -181,6 +184,8 @@ export default function Principles({ dict }: PrinciplesProps) {
 
         }
 
+        @media (hover:hover) and (pointer:fine){
+
         .principle-card:hover{
 
           transform:
@@ -208,18 +213,117 @@ export default function Principles({ dict }: PrinciplesProps) {
 
         }
 
-        @media(max-width:980px){
+        }
 
-          .principles-grid{
+        @media (max-width:768px){
 
-            grid-template-columns:1fr;
+        .principles-grid{
+
+          display:flex;
+
+          overflow-x:auto;
+
+          gap:18px;
+
+          margin:0 -24px;
+          padding:0 24px 12px;
+
+          scroll-snap-type:x mandatory;
+
+          -webkit-overflow-scrolling:touch;
+
+          scrollbar-width:none;
+
+        }
+
+        .principles-grid::-webkit-scrollbar{
+            display:none;
+          }
+
+          .principles-grid > div{
+
+            flex:0 0 88%;
+
+            scroll-snap-align:center;
+
+            display:flex;
 
           }
 
           .principle-card{
 
+            width:100%;
+
             min-height:auto;
 
+            padding:34px 28px;
+
+          }
+
+          .principle-card h3{
+
+            font-size:26px;
+
+          }
+
+          .principle-card p{
+
+            font-size:15px;
+
+          }
+
+        }
+
+        @media (max-width:480px){
+
+          .principles-grid > div{
+
+            flex:0 0 92%;
+
+          }
+
+        }
+        .mobile-swipe-hint{
+          display:none;
+        }
+
+        @media (max-width:768px){
+
+          .mobile-swipe-hint{
+
+            display:flex;
+
+            justify-content:center;
+            align-items:center;
+
+            margin-top:20px;
+
+            color:var(--text3);
+
+            font-size:13px;
+
+            font-weight:600;
+
+            letter-spacing:.08em;
+
+            text-transform:uppercase;
+
+            animation:hintPulse 2.2s ease-in-out infinite;
+
+          }
+
+        }
+
+        @keyframes hintPulse{
+
+          0%,100%{
+            opacity:.45;
+            transform:translateX(0);
+          }
+
+          50%{
+            opacity:1;
+            transform:translateX(4px);
           }
 
         }

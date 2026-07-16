@@ -241,6 +241,7 @@ export default function Competencies({ dict }: CompetenciesProps) {
 
           .comp-list{
             display:flex;
+            align-items:stretch;
             flex-direction:row;
             overflow-x:auto;
             gap:18px;
@@ -260,8 +261,7 @@ export default function Competencies({ dict }: CompetenciesProps) {
           }
 
           .comp-list > div{
-            flex:0 0 88%;
-            scroll-snap-align:center;
+            display:flex;
           }
 
           .comp-card{
@@ -281,7 +281,7 @@ export default function Competencies({ dict }: CompetenciesProps) {
         @media (max-width:480px){
 
           .comp-list > div{
-            flex:0 0 92%;
+            display:flex;
           }
 
         }

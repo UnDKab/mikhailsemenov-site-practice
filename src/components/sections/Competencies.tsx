@@ -124,6 +124,10 @@ export default function Competencies({ dict }: CompetenciesProps) {
                   {card.idx}
                 </div>
 
+                <div className="skills-mobile-tip">
+            ← ... →
+          </div>
+
                 <h3
                   style={{
                     fontSize: 26,

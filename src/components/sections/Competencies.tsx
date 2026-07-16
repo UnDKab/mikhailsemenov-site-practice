@@ -1,3 +1,5 @@
+'use client'
+
 import RevealBlock from '@/components/ui/RevealBlock'
 import type { Dictionary } from '@/i18n/types'
 import { useEffect, useRef } from 'react'

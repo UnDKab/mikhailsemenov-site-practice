@@ -58,6 +58,9 @@ export default function Competencies({ dict }: CompetenciesProps) {
         </RevealBlock>
 
         <div className="comp-list">
+          <div className="mobile-swipe-hint">
+            ← Листайте карточки →
+          </div>
           {competencies.cards.map((card, i) => (
             <RevealBlock key={card.idx} delay={(i % 3) as 0 | 1 | 2}>
               <div
@@ -123,10 +126,6 @@ export default function Competencies({ dict }: CompetenciesProps) {
                 >
                   {card.idx}
                 </div>
-
-                <div className="skills-mobile-tip">
-            ← ... →
-          </div>
 
                 <h3
                   style={{
@@ -280,6 +279,42 @@ export default function Competencies({ dict }: CompetenciesProps) {
             flex:0 0 92%;
           }
 
+        }
+        .mobile-swipe-hint{
+          display:none;
+        }
+
+        @media (max-width:768px){
+
+          .mobile-swipe-hint{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:10px;
+
+            margin-top:18px;
+
+            color:var(--text3);
+            font-size:13px;
+            font-weight:600;
+            letter-spacing:.08em;
+            text-transform:uppercase;
+
+            animation:hintPulse 2.2s ease-in-out infinite;
+          }
+
+        }
+
+        @keyframes hintPulse{
+          0%,100%{
+            opacity:.45;
+            transform:translateX(0);
+          }
+
+          50%{
+            opacity:1;
+            transform:translateX(4px);
+          }
         }
       `}</style>
     </section>

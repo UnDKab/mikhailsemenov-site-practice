@@ -308,11 +308,12 @@ export default function Competencies({ dict }: CompetenciesProps) {
 
 
           .comp-list > div{
-            flex:0 0 88%;
-            scroll-snap-align:center;
+          flex:0 0 88%;
+          scroll-snap-align:center;
 
-            display:flex;
-          }
+          display:flex;
+          flex-direction:column;
+        }
 
 
           .comp-card{

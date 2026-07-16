@@ -153,7 +153,7 @@ export default function Competencies({ dict }: CompetenciesProps) {
                 </p>
               </div>
                               <div className="mobile-swipe-hint">
-                  ← Листайте карточки →
+                  ← ... →
                 </div>
             </RevealBlock>
             
@@ -210,6 +210,8 @@ export default function Competencies({ dict }: CompetenciesProps) {
           transition:transform .45s var(--ease);
         }
 
+        @media (hover:hover) and (pointer:fine){
+
         .comp-card:hover{
           transform:translateY(-10px) scale(1.015);
           box-shadow:0 34px 80px rgba(15,73,137,.18)!important;
@@ -232,6 +234,8 @@ export default function Competencies({ dict }: CompetenciesProps) {
         .comp-card--feature:hover{
           box-shadow:0 40px 90px rgba(15,73,137,.35)!important;
         }
+
+      }
 
         @media (max-width:768px){
 

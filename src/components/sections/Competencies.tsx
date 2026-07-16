@@ -57,15 +57,7 @@ export default function Competencies({ dict }: CompetenciesProps) {
           <h2>{competencies.title}</h2>
         </RevealBlock>
 
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 24,
-            maxWidth: 700,
-            margin: '0 auto',
-          }}
-        >
+        <div className="comp-list">
           {competencies.cards.map((card, i) => (
             <RevealBlock key={card.idx} delay={(i % 3) as 0 | 1 | 2}>
               <div
@@ -165,6 +157,14 @@ export default function Competencies({ dict }: CompetenciesProps) {
       </div>
 
       <style>{`
+        .comp-list{
+          display:flex;
+          flex-direction:column;
+          gap:24px;
+          max-width:700px;
+          margin:0 auto;
+        }
+
         .comp-card{
           transition:
             transform .45s var(--ease),
@@ -191,7 +191,8 @@ export default function Competencies({ dict }: CompetenciesProps) {
           top:50%;
           transform:translate(-50%,-50%);
           border-radius:50%;
-          background:radial-gradient(circle,
+          background:
+            radial-gradient(circle,
             rgba(0,160,227,.16),
             transparent 70%);
           filter:blur(35px);
@@ -225,6 +226,56 @@ export default function Competencies({ dict }: CompetenciesProps) {
 
         .comp-card--feature:hover{
           box-shadow:0 40px 90px rgba(15,73,137,.35)!important;
+        }
+
+        @media (max-width:768px){
+
+          .comp-list{
+            display:flex;
+            flex-direction:row;
+            overflow-x:auto;
+            gap:18px;
+            max-width:none;
+
+            margin:0 -24px;
+            padding:0 24px 12px;
+
+            scroll-snap-type:x mandatory;
+            -webkit-overflow-scrolling:touch;
+
+            scrollbar-width:none;
+          }
+
+          .comp-list::-webkit-scrollbar{
+            display:none;
+          }
+
+          .comp-list > div{
+            flex:0 0 88%;
+            scroll-snap-align:center;
+          }
+
+          .comp-card{
+            padding:34px !important;
+            min-height:100%;
+          }
+
+          .comp-card h3{
+            font-size:22px !important;
+          }
+
+          .comp-card p{
+            font-size:15px !important;
+          }
+
+        }
+
+        @media (max-width:480px){
+
+          .comp-list > div{
+            flex:0 0 92%;
+          }
+
         }
       `}</style>
     </section>

@@ -78,7 +78,7 @@ export default function Skills({ dict }: SkillsProps) {
           </ul>
 
           <div className="skills-mobile-tip">
-            ← Листайте карточки →
+            ← ... →
           </div>
         </RevealBlock>
       </div>

@@ -262,7 +262,7 @@ export default function Competencies({ dict }: CompetenciesProps) {
 
           .comp-card{
             padding:34px !important;
-            min-height:100%;
+            height:auto;
           }
 
           .comp-card h3{

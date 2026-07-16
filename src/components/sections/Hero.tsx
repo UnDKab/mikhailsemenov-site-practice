@@ -145,11 +145,6 @@ export default function Hero({ dict }: HeroProps) {
 
               </div>
 
-
-              <div className="mobile-swipe-hint">
-                ← ... →
-              </div>
-
             </div>
 
           ))}

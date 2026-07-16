@@ -152,9 +152,9 @@ export default function Competencies({ dict }: CompetenciesProps) {
                   {card.text}
                 </p>
               </div>
-                              <div className="mobile-swipe-hint">
-                  ← ... →
-                </div>
+              <div className="mobile-swipe-hint">
+              ← ... →
+            </div>
             </RevealBlock>
             
           ))}
@@ -210,8 +210,6 @@ export default function Competencies({ dict }: CompetenciesProps) {
           transition:transform .45s var(--ease);
         }
 
-        @media (hover:hover) and (pointer:fine){
-
         .comp-card:hover{
           transform:translateY(-10px) scale(1.015);
           box-shadow:0 34px 80px rgba(15,73,137,.18)!important;
@@ -235,13 +233,10 @@ export default function Competencies({ dict }: CompetenciesProps) {
           box-shadow:0 40px 90px rgba(15,73,137,.35)!important;
         }
 
-      }
-
         @media (max-width:768px){
 
           .comp-list{
             display:flex;
-            align-items:stretch;
             flex-direction:row;
             overflow-x:auto;
             gap:18px;
@@ -261,11 +256,13 @@ export default function Competencies({ dict }: CompetenciesProps) {
           }
 
           .comp-list > div{
-            display:flex;
+            flex:0 0 88%;
+            scroll-snap-align:center;
           }
 
           .comp-card{
             padding:34px !important;
+            min-height:100%;
           }
 
           .comp-card h3{
@@ -281,7 +278,7 @@ export default function Competencies({ dict }: CompetenciesProps) {
         @media (max-width:480px){
 
           .comp-list > div{
-            display:flex;
+            flex:0 0 92%;
           }
 
         }

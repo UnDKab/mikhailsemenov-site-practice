@@ -179,26 +179,13 @@ export default function Hero({ dict }: HeroProps) {
 
       <style>{`
 
-        .hero-stat-slide{
-          display:flex;
-          flex-direction:column;
-        }
-
-
-        .mobile-swipe-hint{
-          display:none;
-        }
-
-
-
         @media (max-width:768px){
 
           .hero{
 
             min-height:100svh !important;
 
-            padding:
-              110px 0 70px !important;
+            padding:110px 0 70px !important;
 
           }
 
@@ -232,7 +219,6 @@ export default function Hero({ dict }: HeroProps) {
           }
 
 
-
           .hero .reveal.d4{
 
             display:flex !important;
@@ -248,15 +234,13 @@ export default function Hero({ dict }: HeroProps) {
           }
 
 
-
           .hero .btn{
 
             width:100%;
 
             justify-content:center;
 
-            padding:
-              18px 24px;
+            padding:18px 24px;
 
             font-size:16px;
 
@@ -264,7 +248,7 @@ export default function Hero({ dict }: HeroProps) {
 
 
 
-          /* HERO STATS CAROUSEL */
+          /* ОДНА КАРУСЕЛЬ ИЗ ТРЁХ КАРТОЧЕК */
 
           .hero-stats{
 
@@ -273,12 +257,10 @@ export default function Hero({ dict }: HeroProps) {
 
             display:flex !important;
 
-            flex-direction:row;
+            flex-direction:row !important;
 
 
             overflow-x:auto;
-
-            overflow-y:hidden;
 
 
             gap:18px !important;
@@ -290,6 +272,7 @@ export default function Hero({ dict }: HeroProps) {
 
 
             padding:
+
               0 24px 12px;
 
 
@@ -304,7 +287,6 @@ export default function Hero({ dict }: HeroProps) {
           }
 
 
-
           .hero-stats::-webkit-scrollbar{
 
             display:none;
@@ -313,32 +295,21 @@ export default function Hero({ dict }: HeroProps) {
 
 
 
-          .hero-stat-slide{
+          .hero-stat{
 
-            flex:
-              0 0 88%;
+            flex:0 0 88%;
 
 
             scroll-snap-align:center;
 
-          }
 
-
-
-          .hero-stat{
-
-            width:100%;
-
-            min-width:unset;
+            width:auto !important;
 
 
             padding:28px;
 
 
             border-radius:20px;
-
-
-            height:100%;
 
           }
 
@@ -361,8 +332,6 @@ export default function Hero({ dict }: HeroProps) {
 
             justify-content:center;
 
-            align-items:center;
-
 
             margin-top:14px;
 
@@ -382,18 +351,15 @@ export default function Hero({ dict }: HeroProps) {
             text-transform:uppercase;
 
 
-            animation:
-              hintPulse 2.2s ease-in-out infinite;
+            animation:hintPulse 2.2s ease-in-out infinite;
 
           }
-
-
 
         }
 
 
 
-        @media (max-width:480px){
+        @media(max-width:480px){
 
 
           .hero{
@@ -403,13 +369,11 @@ export default function Hero({ dict }: HeroProps) {
           }
 
 
-
           .hero-title{
 
             font-size:42px !important;
 
           }
-
 
 
           .hero p{
@@ -419,22 +383,13 @@ export default function Hero({ dict }: HeroProps) {
           }
 
 
-
-          .hero-stat-slide{
-
-            flex:
-              0 0 92%;
-
-          }
-
-
-
           .hero-stat{
+
+            flex-basis:92%;
 
             padding:24px;
 
           }
-
 
 
           .hero-stat b{
@@ -443,13 +398,11 @@ export default function Hero({ dict }: HeroProps) {
 
           }
 
-
         }
 
 
 
         @keyframes hintPulse{
-
 
           0%,100%{
 
@@ -460,7 +413,6 @@ export default function Hero({ dict }: HeroProps) {
           }
 
 
-
           50%{
 
             opacity:1;
@@ -469,11 +421,10 @@ export default function Hero({ dict }: HeroProps) {
 
           }
 
-
         }
 
 
-      `}</style>
+        `}</style>
     </header>
   )
 }

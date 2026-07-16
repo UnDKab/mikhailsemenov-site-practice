@@ -1,5 +1,6 @@
 import RevealBlock from '@/components/ui/RevealBlock'
 import type { Dictionary } from '@/i18n/types'
+import { useEffect, useRef } from 'react'
 
 const icons = [
   (
@@ -49,6 +50,38 @@ type CompetenciesProps = {
 export default function Competencies({ dict }: CompetenciesProps) {
   const { competencies } = dict
 
+  const cardsRef = useRef<HTMLDivElement[]>([])
+
+  useEffect(() => {
+    const updateCardsHeight = () => {
+      if (window.innerWidth > 768) return
+
+      const cards = cardsRef.current.filter(Boolean)
+
+      if (!cards.length) return
+
+      cards.forEach(card => {
+        card.style.height = 'auto'
+      })
+
+      const maxHeight = Math.max(
+        ...cards.map(card => card.offsetHeight)
+      )
+
+      cards.forEach(card => {
+        card.style.height = `${maxHeight}px`
+      })
+    }
+
+    updateCardsHeight()
+
+    window.addEventListener('resize', updateCardsHeight)
+
+    return () => {
+      window.removeEventListener('resize', updateCardsHeight)
+    }
+  }, [competencies.cards])
+
   return (
     <section className="sec skills" id="skills" style={{ background: 'var(--surface)' }}>
       <div className="wrap">
@@ -62,6 +95,11 @@ export default function Competencies({ dict }: CompetenciesProps) {
           {competencies.cards.map((card, i) => (
             <RevealBlock key={card.idx} delay={(i % 3) as 0 | 1 | 2}>
               <div
+                ref={(el) => {
+                  if (el) {
+                    cardsRef.current[i] = el
+                  }
+                }}
                 className={`comp-card${card.feature ? ' comp-card--feature' : ''}`}
                 style={{
                   position: 'relative',
@@ -170,6 +208,10 @@ export default function Competencies({ dict }: CompetenciesProps) {
           margin:0 auto;
         }
 
+        .comp-list > div{
+          display:flex;
+        }
+
         .comp-card{
           transition:
             transform .45s var(--ease),
@@ -233,12 +275,16 @@ export default function Competencies({ dict }: CompetenciesProps) {
           box-shadow:0 40px 90px rgba(15,73,137,.35)!important;
         }
 
+
         @media (max-width:768px){
 
           .comp-list{
             display:flex;
             flex-direction:row;
+
             overflow-x:auto;
+            overflow-y:hidden;
+
             gap:18px;
             max-width:none;
 
@@ -249,31 +295,51 @@ export default function Competencies({ dict }: CompetenciesProps) {
             -webkit-overflow-scrolling:touch;
 
             scrollbar-width:none;
+
+            align-items:stretch;
           }
+
 
           .comp-list::-webkit-scrollbar{
             display:none;
           }
 
+
           .comp-list > div{
             flex:0 0 88%;
             scroll-snap-align:center;
+
+            display:flex;
           }
+
 
           .comp-card{
             padding:34px !important;
-            height:auto;
+            width:100%;
+            flex:1;
+
+            /* убираем скачки высоты */
+            min-height:0;
           }
+
 
           .comp-card h3{
             font-size:22px !important;
           }
 
+
           .comp-card p{
             font-size:15px !important;
           }
 
+
+          /* отключаем hover на телефонах */
+          .comp-card:hover{
+            transform:none;
+          }
+
         }
+
 
         @media (max-width:480px){
 
@@ -282,23 +348,30 @@ export default function Competencies({ dict }: CompetenciesProps) {
           }
 
         }
+
+
         .mobile-swipe-hint{
           display:none;
         }
+
 
         @media (max-width:768px){
 
           .mobile-swipe-hint{
             display:flex;
+
             align-items:center;
             justify-content:center;
+
             gap:10px;
 
             margin-top:18px;
 
             color:var(--text3);
+
             font-size:13px;
             font-weight:600;
+
             letter-spacing:.08em;
             text-transform:uppercase;
 
@@ -307,17 +380,22 @@ export default function Competencies({ dict }: CompetenciesProps) {
 
         }
 
+
         @keyframes hintPulse{
+
           0%,100%{
             opacity:.45;
             transform:translateX(0);
           }
 
+
           50%{
             opacity:1;
             transform:translateX(4px);
           }
+
         }
+
       `}</style>
     </section>
   )

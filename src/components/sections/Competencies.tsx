@@ -58,9 +58,7 @@ export default function Competencies({ dict }: CompetenciesProps) {
         </RevealBlock>
 
         <div className="comp-list">
-          <div className="mobile-swipe-hint">
-            ← Листайте карточки →
-          </div>
+          
           {competencies.cards.map((card, i) => (
             <RevealBlock key={card.idx} delay={(i % 3) as 0 | 1 | 2}>
               <div
@@ -92,6 +90,9 @@ export default function Competencies({ dict }: CompetenciesProps) {
                   textAlign: 'center',
                 }}
               >
+                <div className="mobile-swipe-hint">
+                  ← Листайте карточки →
+                </div>
                 <div className="comp-line" />
 
                 <div className="comp-glow" />
